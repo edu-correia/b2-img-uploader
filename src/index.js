@@ -19,7 +19,7 @@ const upload = multer({storage});
 const app = express();
 
 app.post('/upload/:bucketName', upload.single('file'), async (req, res) => {
-    const {bucketName} = req.query;
+    const {bucketName} = req.params;
     const bucket = Bucket(bucketName, {
       id: process.env.B2_ID,
       key: process.env.B2_KEY
