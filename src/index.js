@@ -3,6 +3,7 @@ dotenv.config();
 
 import multer from 'multer';
 import express from 'express';
+import cors from 'cors';
 import Bucket from "backblaze";
 
 const storage = multer.diskStorage({
@@ -17,6 +18,8 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 const app = express();
+
+app.use(cors());
 
 app.post('/upload/:bucketName', upload.single('file'), async (req, res) => {
     const {bucketName} = req.params;
